@@ -24,8 +24,7 @@ public class AccountMemberBuilder {
 
     /**
      * Creates a new AccountMember with a unique email address
-     * TODO: need to define the parameter length
-     * @param email the new member's email address
+     * @param email the new member's email address (max 255, valid email address)
      * @return This
      */
     public static AccountMemberBuilder newAccountMember( String email ) {
@@ -35,8 +34,7 @@ public class AccountMemberBuilder {
 
     /**
      * Set the member's company.
-     * TODO: need to define the parameter length
-     * @param company
+     * @param company (max 255, any characters)
      * @return This
      */
     public AccountMemberBuilder withCompany( String company ) {
@@ -46,8 +44,7 @@ public class AccountMemberBuilder {
 
     /**
      * Set the member's first name.
-     * TODO: need to define the parameter length
-     * @param firstName
+     * @param firstName (max 100, any characters)
      * @return This
      */
     public AccountMemberBuilder withFirstName( String firstName ) {
@@ -57,8 +54,7 @@ public class AccountMemberBuilder {
 
     /**
      * Set the member's last name
-     * TODO: need to define the parameter length
-     * @param lastName
+     * @param lastName (max 100, any characters)
      * @return
      */
     public AccountMemberBuilder withLastName( String lastName ) {
@@ -68,10 +64,11 @@ public class AccountMemberBuilder {
 
     /**
      * Set the member's preferred language to be used in email communications and the web UI interface.
-     * TODO: need to define the parameter length. Shouldn't this be a Locale instead of a String???
-     * @param language
+     * @param language The two-letter abbreviation for the language (ie. "en", "fr", "de", etc.);
      * @return This
+     * @deprecated Please use withLanguage( Locale locale ) instead
      */
+    @Deprecated
     public AccountMemberBuilder withLanguage( String language ) {
         this.language = language;
         return this;
@@ -92,8 +89,7 @@ public class AccountMemberBuilder {
      * Set the member's title.
      * <p>
      * E.g.: Mr. Ms. Mrs. etc...
-     * TODO: need to define the parameter length
-     * @param title
+     * @param title (max 64, any characters)
      * @return This
      */
     public AccountMemberBuilder withTitle( String title ) {
@@ -113,7 +109,7 @@ public class AccountMemberBuilder {
     /**
      * Set the member's street address.
      * @see #withAddress(AddressBuilder)
-     * @param builder
+     * @param address
      * @return
      */
     public AccountMemberBuilder withAddress( Address address ) {

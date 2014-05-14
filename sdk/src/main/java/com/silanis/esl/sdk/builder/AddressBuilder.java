@@ -18,8 +18,7 @@ public class AddressBuilder {
 
     /**
      * Set user's address
-     * TODO: why is there address1 and address2? What is the difference between the two?
-     * @param address1
+     * @param address1 Civic number and Street Name ( max 255, any characters )
      * @return This
      */
     public AddressBuilder withAddress1( String address1 ) {
@@ -29,8 +28,7 @@ public class AddressBuilder {
 
     /**
      * Set user's address
-     * TODO: why is there address1 and address2? What is the difference between the two?
-     * @param address2
+     * @param address2 Apt # / Suite # / etc (max 255, any characters )
      * @return This
      */
     public AddressBuilder withAddress2( String address2 ) {
@@ -40,7 +38,7 @@ public class AddressBuilder {
 
     /**
      * Set the address' city
-     * @param city
+     * @param city (max 64, any characters)
      * @return This
      */
     public AddressBuilder withCity( String city ) {
@@ -51,7 +49,7 @@ public class AddressBuilder {
     /**
      * Set the address' country
      * 
-     * @param country
+     * @param country (max 64, any characters)
      * @return
      */
     public AddressBuilder withCountry( String country ) {
@@ -61,7 +59,7 @@ public class AddressBuilder {
 
     /**
      * Set the address' state
-     * @param state
+     * @param state (max 32, any characters)
      * @return
      */
     public AddressBuilder withState( String state ) {
@@ -70,9 +68,8 @@ public class AddressBuilder {
     }
 
     /**
-     * Set the address's zip code
-     * TODO: How does it work for other countries? Postal Code?  
-     * @param zipCode
+     * Set the address's zip code / postal code
+     * @param zipCode (max 32, any characters)
      * @return
      */
     public AddressBuilder withZipCode( String zipCode ) {

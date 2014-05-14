@@ -31,8 +31,8 @@ public class DocumentPackage implements Serializable {
     private DocumentPackageAttributes attributes;
     private SenderInfo senderInfo;
 
-    /**
-     * @param name         the name of the package
+    /**address
+     * @param name         the name of the packageaddress
      * @param signers      the Map of signers
      * @param documents    the Map of documents
      * @param autocomplete the autocomplete status. If it is set to true,
