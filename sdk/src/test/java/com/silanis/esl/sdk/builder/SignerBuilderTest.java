@@ -164,6 +164,26 @@ public class SignerBuilderTest {
     }
 
     @Test
+    public void providingAuthenticationPayload() {
+        Signer signer = newSignerWithEmail("joe@blow.com")
+                .withFirstName("Joe")
+                .withLastName("Blow")
+                .withAuthenticationPayload(AuthenticationPayloadBuilder.createAuthenticationPayload("Xz3AwPp9xazJ0ku5CZnlmgAx2DlJJGw0k0kd8SHkAeT"))
+                .build();
+
+        assertThat(signer.getAuthenticationPayload().getPayload(), is(equalTo("Xz3AwPp9xazJ0ku5CZnlmgAx2DlJJGw0k0kd8SHkAeT")));
+    }
+
+    @Test(expected = EslException.class)
+    public void emptyAuthenticationPayloadNotAllowed() {
+        newSignerWithEmail("joe@blow.com")
+                .withFirstName("Joe")
+                .withLastName("Blow")
+                .withAuthenticationPayload(AuthenticationPayloadBuilder.createAuthenticationPayload(" "))
+                .build();
+    }
+
+    @Test
     public void canConfiguredSignedDocumentDelivery() {
         Signer signer = newSignerWithEmail("joe@blow.com")
                 .withFirstName("Joe")

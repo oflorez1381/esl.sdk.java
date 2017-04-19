@@ -29,6 +29,7 @@ final public class SignerBuilder {
     private String placeholderName = null;
     private List<AttachmentRequirement> attachments = new ArrayList<AttachmentRequirement>();
     private KnowledgeBasedAuthentication knowledgeBasedAuthentication;
+    private AuthenticationPayload authenticationPayload;
 
     /**
      * <p>The constructor of the SignerBuilderClass.</p>
@@ -199,6 +200,7 @@ final public class SignerBuilder {
         result.setId(id);
         result.setAttachmentRequirements(attachments);
         result.setKnowledgeBasedAuthentication(knowledgeBasedAuthentication);
+        result.setAuthenticationPayload(authenticationPayload);
 
         return result;
     }
@@ -587,5 +589,10 @@ final public class SignerBuilder {
 
     private boolean isPlaceholder(){
         return groupId == null && email == null;
+    }
+
+    public SignerBuilder withAuthenticationPayload(AuthenticationPayloadBuilder authenticationPayloadBuilder){
+        this.authenticationPayload = authenticationPayloadBuilder.build();
+        return this;
     }
 }
