@@ -57,6 +57,8 @@ public class Signer extends User
     public static final String FIELD_UPDATED = "updated";
     @JsonIgnore
     public static final String FIELD_USERCUSTOMFIELDS = "userCustomFields";
+    @JsonIgnore
+    public static final String FIELD_AUTHENTICATION_PAYLOAD = "authenticationPayload";
 
     // Empty Constructor
     public Signer ( ) {}
@@ -66,6 +68,7 @@ public class Signer extends User
     protected Delivery _delivery;
     protected Group _group = null;
     protected KnowledgeBasedAuthentication _knowledgeBasedAuthentication = null;
+    protected AuthenticationPayload _authenticationPayload = null;
     
     // Accessors
         
@@ -417,5 +420,24 @@ public class Signer extends User
         super.addUserCustomField(value);
         return this;
     }
+
+    public Signer setAuthenticationPayload(AuthenticationPayload value) {
+        this._authenticationPayload = value;
+        setDirty(FIELD_AUTHENTICATION_PAYLOAD);
+        return this;
+    }
+
+    @JsonIgnore
+    public Signer safeSetAuthenticationPayload(AuthenticationPayload value) {
+        if (value != null) {
+            this.setAuthenticationPayload(value);
+        }
+        return this;
+    }
+
+    public AuthenticationPayload getAuthenticationPayload() {
+        return _authenticationPayload;
+    }
+
 
 }
