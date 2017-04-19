@@ -62,7 +62,9 @@ public class SignerConverter {
                     .setTitle(sdkSigner.getTitle())
                     .setCompany(sdkSigner.getCompany())
                     .setKnowledgeBasedAuthentication(new KnowledgeBasedAuthenticationConverter(sdkSigner.getKnowledgeBasedAuthentication()).toAPIKnowledgeBasedAuthentication())
-                    .setDelivery( new Delivery().setEmail( sdkSigner.isDeliverSignedDocumentsByEmail() ) );
+                    .setDelivery( new Delivery().setEmail( sdkSigner.isDeliverSignedDocumentsByEmail() ) )
+                    .setAuthenticationPayload(new AuthenticationPayloadConverter(sdkSigner.getAuthenticationPayload()).toAPIAuthenticationPayload());
+
         } else {
             result.setGroup( new com.silanis.esl.api.model.Group().setId( sdkSigner.getGroupId().toString() ) );
         }
@@ -85,7 +87,8 @@ public class SignerConverter {
                     .withLastName( apiSigner.getLastName() )
                     .withCompany( apiSigner.getCompany() )
                     .withTitle( apiSigner.getTitle() )
-                    .challengedWithKnowledgeBasedAuthentication(new KnowledgeBasedAuthenticationConverter(apiSigner.getKnowledgeBasedAuthentication()).toSDKKnowledgeBasedAuthentication());
+                    .challengedWithKnowledgeBasedAuthentication(new KnowledgeBasedAuthenticationConverter(apiSigner.getKnowledgeBasedAuthentication()).toSDKKnowledgeBasedAuthentication())
+                    .withAuthenticationPayload(new AuthenticationPayloadConverter(apiSigner.getAuthenticationPayload()).toSDKAuthenticationPayload());
             if ( apiSigner.getDelivery() != null && apiSigner.getDelivery().getEmail() ) {
                 signerBuilder.deliverSignedDocumentsByEmail();
             }

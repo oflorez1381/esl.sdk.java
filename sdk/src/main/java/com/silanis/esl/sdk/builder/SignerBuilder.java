@@ -595,4 +595,9 @@ final public class SignerBuilder {
         this.authenticationPayload = authenticationPayloadBuilder.build();
         return this;
     }
+
+    public SignerBuilder withAuthenticationPayload(AuthenticationPayload authenticationPayload){
+        this.authenticationPayload = authenticationPayload;
+        return this;
+    }
 }

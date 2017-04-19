@@ -2,6 +2,7 @@ package com.silanis.esl.sdk.internal.converter;
 
 import com.silanis.esl.api.model.*;
 import com.silanis.esl.sdk.builder.AttachmentRequirementBuilder;
+import com.silanis.esl.sdk.builder.AuthenticationPayloadBuilder;
 import com.silanis.esl.sdk.builder.SignerBuilder;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -257,5 +258,24 @@ public class SignerConverterTest implements ConverterTest {
         return apiRole;
     }
 
+    @Test
+    public void convertSDKSignerWithAuthenticationPayloadToAPISigner() {
+        sdkSigner1 = SignerBuilder.newSignerWithEmail("abc@test.com")
+                .withCompany("ABC Inc.")
+                .withFirstName("first name")
+                .withLastName("last name")
+                .withAuthenticationPayload(AuthenticationPayloadBuilder.createAuthenticationPayload("test payload"))
+                .build();
 
+        apiSigner1 = new SignerConverter(sdkSigner1).toAPISigner();
+
+        assertThat("Email was not correctly set", apiSigner1.getEmail(),
+                is(equalTo(sdkSigner1.getEmail())));
+        assertThat("First name was not correctly set", apiSigner1.getFirstName(),
+                is(equalTo(sdkSigner1.getFirstName())));
+        assertThat("Last name was not correctly set", apiSigner1.getLastName(),
+                is(equalTo(sdkSigner1.getLastName())));
+        assertThat("Authentication Payload was not correctly set", apiSigner1.getAuthenticationPayload().getPayload(),
+                is(equalTo(sdkSigner1.getAuthenticationPayload().getPayload())));
+    }
 }
